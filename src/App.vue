@@ -1,26 +1,28 @@
 <template>
-  <div id="app">
-    <Istagram />
-  </div>
+    <vue-instagram
+        token="7089887265.1677ed0.f3d1f012770e4c1ba11e0d00311aefdc"
+        :count="6"
+        :tags="[]"
+        mediaType="image"
+    >
+        <template slot="feeds" slot-scope="props">
+            <li class="fancy-list"> {{ props.feed.link }}</li>
+        </template>
+        <template slot="error" slot-scope="props">
+            <div class="fancy-alert"> {{ props.error.error_message }}</div>
+        </template>
+    </vue-instagram>
 </template>
 
 <script>
-import Istagram from './components/Instagram'
+    import VueInstagram from 'vue-instagram'
 
-export default {
-  name: 'App',
-  components: {
-    Istagram
-  }
-}
+    export default {
+        name: 'App',
+        props: 'images',
+
+        components: {
+            VueInstagram
+        }
+    }
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-</style>
